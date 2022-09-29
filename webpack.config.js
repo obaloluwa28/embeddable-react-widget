@@ -1,7 +1,12 @@
 const path = require("path");
 module.exports = {
-    entry: "/src/index.js",
-    output: {path: path.resolve(__dirname, 'dist')},
+    mode: 'development',
+    entry: "./src/index.js",
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+        clean: true
+    },
     module: {
         rules: [
             {
@@ -17,4 +22,15 @@ module.exports = {
 
         ],
     },
+    devServer: {
+        static: {
+          directory: path.join(__dirname, 'public'),
+        },
+        devServer: {
+            allowedHosts: 'auto',
+            host: '0.0.0.0'
+          },
+        compress: true,
+        port: 9000,
+      },
 };
